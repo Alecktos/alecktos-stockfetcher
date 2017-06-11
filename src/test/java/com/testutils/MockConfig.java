@@ -1,7 +1,7 @@
 package com.testutils;
 
-import com.DateTime;
-import com.stocklibrary.configs.Config;
+import com.alecktos.DateTime;
+import com.alecktos.stocklibrary.configs.Config;
 
 public class MockConfig extends Config {
 

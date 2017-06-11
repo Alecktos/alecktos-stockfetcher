@@ -1,6 +1,6 @@
 package com.testutils;
 
-import com.stocklibrary.configs.DisneyAvanzaConfig;
+import com.alecktos.stocklibrary.configs.DisneyAvanzaConfig;
 
 public class DisneyTestConfig extends DisneyAvanzaConfig {
 
