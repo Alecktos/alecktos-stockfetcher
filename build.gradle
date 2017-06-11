@@ -1,0 +1,20 @@
+group 'com.stockfetcher'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.commons:commons-email:1.4'
+    compile 'com.google.inject:guice:4.0'
+    compile 'org.json:json:20151123'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    testCompile 'org.mockito:mockito-core:2.+'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
