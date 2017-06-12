@@ -1,15 +1,13 @@
 package com.alecktos.stockfetcher;
 
-import com.alecktos.DateTime;
 import com.alecktos.FileHandler;
 import com.alecktos.LineFileReader;
+import com.alecktos.logger.Logger;
+import com.alecktos.marketopen.DateTime;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
-import com.alecktos.logger.Logger;
-import com.alecktos.stocklibrary.configs.Config;
-import com.testutils.MockConfig;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -106,9 +104,9 @@ public class LastLineFileRepairerTest {
 		LastLineFileRepairer lastLineFileRepairer = injector.getInstance(LastLineFileRepairer.class);
 
 		DateTime dateTimeToSave = DateTime.createFromDateTimeString("09/15/2016 21:00:03");
-		Config config = MockConfig.createMockConfigOpenMarketFromDateTime(disneyStockTestPath, dateTimeToSave);
+		//Config config = MockConfig.createMockConfigOpenMarketFromDateTime(disneyStockTestPath, dateTimeToSave);
 
-		lastLineFileRepairer.repairLastLine(config, dateTimeToSave, DateTime.createFromNow());
+		lastLineFileRepairer.repairLastLine(disneyStockTestPath, dateTimeToSave, DateTime.createFromNow());
 
 		LineFileReader lineFileReader = new LineFileReader();
 		final List<String> lines = lineFileReader.getLinesFromFile(disneyStockTestPath, -1);
@@ -123,9 +121,9 @@ public class LastLineFileRepairerTest {
 
 		DateTime dateTimeToSave = DateTime.createFromDateTimeString("09/15/2016 20:56:01");
 		DateTime fakeNow = DateTime.createFromDateTimeString("09/15/2016 20:59:02"); //less then five minutes after last line. This mean that the las line was inserted correct.
-		Config config = MockConfig.createMockConfigOpenMarketFromDateTime(disneyStockTestPath, fakeNow);
+		//Config config = MockConfig.createMockConfigOpenMarketFromDateTime(disneyStockTestPath, fakeNow);
 
-		lastLineFileRepairer.repairLastLine(config, dateTimeToSave, fakeNow);
+		lastLineFileRepairer.repairLastLine(disneyStockTestPath, dateTimeToSave, fakeNow);
 
 		LineFileReader lineFileReader = new LineFileReader();
 		final List<String> lines = lineFileReader.getLinesFromFile(disneyStockTestPath, -1);

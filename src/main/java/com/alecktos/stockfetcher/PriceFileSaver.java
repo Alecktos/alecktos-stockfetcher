@@ -1,9 +1,9 @@
 package com.alecktos.stockfetcher;
 
-import com.alecktos.DateTime;
 import com.alecktos.FileHandler;
-import com.google.inject.Inject;
 import com.alecktos.logger.Logger;
+import com.alecktos.marketopen.DateTime;
+import com.google.inject.Inject;
 
 import java.io.IOException;
 import java.io.PrintWriter;

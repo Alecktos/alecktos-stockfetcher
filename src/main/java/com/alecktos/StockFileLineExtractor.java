@@ -1,5 +1,7 @@
 package com.alecktos;
 
+import com.alecktos.marketopen.DateTime;
+
 public class StockFileLineExtractor {
 
 	private final String[] splittedLine;

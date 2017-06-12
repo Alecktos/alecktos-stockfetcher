@@ -1,11 +1,10 @@
 package com.alecktos.stockfetcher;
 
-import com.alecktos.DateTime;
 import com.alecktos.LineFileReader;
 import com.alecktos.StockFileLineExtractor;
-import com.google.inject.Inject;
 import com.alecktos.logger.Logger;
-import com.alecktos.stocklibrary.configs.Config;
+import com.alecktos.marketopen.DateTime;
+import com.google.inject.Inject;
 
 import java.util.List;
 
@@ -29,8 +28,8 @@ class LastLineFileRepairer {
 		return lastLineDateTime.isInInterval(dateTimeFrom, now);
 	}
 
-	void repairLastLine(Config config, DateTime dateTimeToSave, DateTime now) {
-		String filePath = config.getArchivePath();
+	void repairLastLine(String filePath, DateTime dateTimeToSave, DateTime now) {
+		//String filePath = config.getArchivePath();
 
 		LineFileReader lineFileReader = new LineFileReader();
 		final List<String> linesFromFile = lineFileReader.getLinesFromFile(filePath, -1);
@@ -48,7 +47,7 @@ class LastLineFileRepairer {
 		PriceFileSaver priceSaver = new PriceFileSaver();
 		double lastPrice = new StockFileLineExtractor(linesFromFile.get(lastIndex)).getPriceFromRow();
 
-		priceSaver.savePrice(config.getArchivePath(), lastPrice, dateTimeToSave);
+		priceSaver.savePrice(filePath, lastPrice, dateTimeToSave);
 		logger.logAndAlert("Saved price for repaired last line", getClass());
 	}
 

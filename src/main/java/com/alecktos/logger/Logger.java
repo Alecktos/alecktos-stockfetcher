@@ -1,6 +1,6 @@
 package com.alecktos.logger;
 
-import com.alecktos.DateTime;
+import com.alecktos.marketopen.DateTime;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

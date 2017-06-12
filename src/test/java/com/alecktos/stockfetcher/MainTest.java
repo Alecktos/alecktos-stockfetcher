@@ -10,7 +10,7 @@ public class MainTest {
 
 	@Test
 	public void testStockFetcherWhenNoFile() {
-		Main.main(new String[]{"production"});
+		Main.main(new String[]{"production", "disney.txt", "14:30:00", "21:00:00"});
 	}
 
 	@Test
@@ -21,7 +21,7 @@ public class MainTest {
 			throw new RuntimeException("Failed saving price to file: " + e.getMessage() + e.getStackTrace().toString());
 		}
 
-		Main.main(new String[]{"production"});
+		Main.main(new String[]{"production", "disney.txt", "14:30:00", "21:00:00"});
 
 		try {
 			FileHandler.deleteFile("disney.txt");
@@ -118,7 +118,7 @@ public class MainTest {
 			throw new RuntimeException("Failed saving price to file: " + e.getMessage() + e.getStackTrace().toString());
 		}
 
-		Main.main(new String[]{"production"});
+		Main.main(new String[]{"production", "disney.txt", "14:30:00", "21:00:00"});
 
 		try {
 			FileHandler.deleteFile("disney.txt");

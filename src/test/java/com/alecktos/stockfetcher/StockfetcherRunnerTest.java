@@ -1,13 +1,12 @@
 package com.alecktos.stockfetcher;
 
-import com.alecktos.DateTime;
 import com.alecktos.FileHandler;
+import com.alecktos.logger.Logger;
+import com.alecktos.marketopen.DateTime;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
-import com.alecktos.logger.Logger;
-import com.testutils.DisneyTestConfig;
 import com.testutils.FileExist;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -62,10 +61,7 @@ public class StockfetcherRunnerTest {
 	public void testFilePriceSaverShouldNotSaveOnColumbusDay() {
 		DateTime dateTime = DateTime.createFromDateTimeString("10/10/2016 16:10:51");
 
-		DisneyTestConfig disneyTestConfig = new DisneyTestConfig();
-		disneyTestConfig.setPath(disneyStockTestPath);
-
-		stockfetcherRunner.run(dateTime, disneyTestConfig);
+		stockfetcherRunner.run(dateTime, "14:30:00", "21:00:00", disneyStockTestPath);
 
 		Path path = Paths.get(disneyStockTestPath);
 		Assert.assertFalse(Files.exists(path));
@@ -73,22 +69,18 @@ public class StockfetcherRunnerTest {
 
 	@Test
 	public void testNotSavingPriceWhenNotOpen() {
-		DisneyTestConfig disneyTestConfig = new DisneyTestConfig();
-		disneyTestConfig.setPath(disneyStockTestPath);
 		DateTime dateTime = DateTime.createFromDateTimeString("01/16/2017 16:10:51");
 
-		stockfetcherRunner.run(dateTime, disneyTestConfig);
+		stockfetcherRunner.run(dateTime, "14:30:00", "21:00:00", disneyStockTestPath);
 
 		assertFalse(FileExist.doExist(disneyStockTestPath));
 	}
 
 	@Test
 	public void testSavingPriceIfOpen() {
-		DisneyTestConfig disneyTestConfig = new DisneyTestConfig();
-		disneyTestConfig.setPath(disneyStockTestPath);
 		DateTime dateTime = DateTime.createFromDateTimeString("01/18/2017 16:10:51");
 
-		stockfetcherRunner.run(dateTime, disneyTestConfig);
+		stockfetcherRunner.run(dateTime, "14:30:00", "21:00:00", disneyStockTestPath);
 
 		assertTrue(FileExist.doExist(disneyStockTestPath));
 	}
