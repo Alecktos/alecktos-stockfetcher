@@ -2,7 +2,7 @@ package com.alecktos.stockfetcher;
 
 
 import com.alecktos.misc.logger.Logger;
-import com.alecktos.marketopen.DateTime;
+import com.alecktos.misc.DateTime;
 import com.alecktos.marketopen.OpenStockHandler;
 import com.alecktos.stockfetcher.markitondemand.MarkItOnDemand;
 import com.google.inject.Inject;

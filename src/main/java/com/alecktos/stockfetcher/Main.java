@@ -2,7 +2,7 @@ package com.alecktos.stockfetcher;
 
 
 import com.alecktos.misc.logger.Logger;
-import com.alecktos.marketopen.DateTime;
+import com.alecktos.misc.DateTime;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;

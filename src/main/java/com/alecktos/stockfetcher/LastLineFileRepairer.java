@@ -3,7 +3,7 @@ package com.alecktos.stockfetcher;
 import com.alecktos.misc.LineFileReader;
 import com.alecktos.StockFileLineExtractor;
 import com.alecktos.misc.logger.Logger;
-import com.alecktos.marketopen.DateTime;
+import com.alecktos.misc.DateTime;
 import com.google.inject.Inject;
 
 import java.util.List;

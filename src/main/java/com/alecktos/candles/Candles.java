@@ -2,7 +2,7 @@ package com.alecktos.candles;
 
 import com.alecktos.StockFileLineExtractor;
 import com.alecktos.misc.logger.Logger;
-import com.alecktos.marketopen.DateTime;
+import com.alecktos.misc.DateTime;
 
 import java.util.ArrayList;
 import java.util.Iterator;

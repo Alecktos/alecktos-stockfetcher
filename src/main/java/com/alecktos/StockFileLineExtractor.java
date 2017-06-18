@@ -1,6 +1,6 @@
 package com.alecktos;
 
-import com.alecktos.marketopen.DateTime;
+import com.alecktos.misc.DateTime;
 
 public class StockFileLineExtractor {
 
