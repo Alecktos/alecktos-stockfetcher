@@ -1,8 +1,8 @@
 package com.alecktos.stockfetcher;
 
-import com.alecktos.LineFileReader;
+import com.alecktos.misc.LineFileReader;
 import com.alecktos.StockFileLineExtractor;
-import com.alecktos.logger.Logger;
+import com.alecktos.misc.logger.Logger;
 import com.alecktos.marketopen.DateTime;
 import com.google.inject.Inject;
 

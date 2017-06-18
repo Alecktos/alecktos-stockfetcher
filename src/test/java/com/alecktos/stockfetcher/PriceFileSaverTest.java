@@ -1,6 +1,6 @@
 package com.alecktos.stockfetcher;
 
-import com.alecktos.FileHandler;
+import com.alecktos.misc.FileHandler;
 import com.alecktos.marketopen.DateTime;
 import com.alecktos.stockfetcher.markitondemand.MarkItOnDemand;
 import org.junit.Before;

@@ -1,7 +1,7 @@
 package com.alecktos.stockfetcher;
 
 
-import com.alecktos.logger.Logger;
+import com.alecktos.misc.logger.Logger;
 import com.alecktos.marketopen.DateTime;
 import com.alecktos.marketopen.OpenStockHandler;
 import com.alecktos.stockfetcher.markitondemand.MarkItOnDemand;

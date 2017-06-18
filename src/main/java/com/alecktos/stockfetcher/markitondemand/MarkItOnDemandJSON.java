@@ -1,8 +1,8 @@
 package com.alecktos.stockfetcher.markitondemand;
 
-import com.alecktos.Stream;
+import com.alecktos.misc.Stream;
 import com.alecktos.candles.CandleStick;
-import com.alecktos.logger.Logger;
+import com.alecktos.misc.logger.Logger;
 import org.json.JSONObject;
 
 import javax.inject.Inject;

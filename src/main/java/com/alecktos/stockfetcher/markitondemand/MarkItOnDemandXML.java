@@ -1,6 +1,6 @@
 package com.alecktos.stockfetcher.markitondemand;
 
-import com.alecktos.Stream;
+import com.alecktos.misc.Stream;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;

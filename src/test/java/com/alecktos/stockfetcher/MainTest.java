@@ -1,6 +1,8 @@
 package com.alecktos.stockfetcher;
 
-import com.alecktos.FileHandler;
+import com.alecktos.misc.FileHandler;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -8,9 +10,33 @@ import java.io.PrintWriter;
 
 public class MainTest {
 
+	@BeforeClass
+	public static void beforeClass() {
+		try(PrintWriter printWriter = FileHandler.getFileWriter("email_config.yml")) {
+			printWriter.println("email:");
+			printWriter.println("  authentication:");
+			printWriter.println("    username: stuff.ae@yahoo.com");
+			printWriter.println("    password: fhdjsk12!");
+			printWriter.println("  hostname: smtp.mail.gmail.com");
+			printWriter.println("  fromaddress: a.dse@yahoo.com");
+			printWriter.println("  receiveraddress: fhdsjk@gmail.com");
+		}catch (IOException e) {
+			throw new RuntimeException("Failed saving file: " + e.getMessage() + e.getStackTrace().toString());
+		}
+	}
+
+	@AfterClass
+	public static void afterClass() {
+		try {
+			FileHandler.deleteFile("email_config.yml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Test
 	public void testStockFetcherWhenNoFile() {
-		Main.main(new String[]{"production", "disney.txt", "14:30:00", "21:00:00"});
+		Main.main(new String[]{"production", "disney.txt", "email_config.yml", "14:30:00", "21:00:00"});
 	}
 
 	@Test
@@ -21,7 +47,7 @@ public class MainTest {
 			throw new RuntimeException("Failed saving price to file: " + e.getMessage() + e.getStackTrace().toString());
 		}
 
-		Main.main(new String[]{"production", "disney.txt", "14:30:00", "21:00:00"});
+		Main.main(new String[]{"production", "disney.txt", "email_config.yml", "14:30:00", "21:00:00"});
 
 		try {
 			FileHandler.deleteFile("disney.txt");
@@ -118,7 +144,7 @@ public class MainTest {
 			throw new RuntimeException("Failed saving price to file: " + e.getMessage() + e.getStackTrace().toString());
 		}
 
-		Main.main(new String[]{"production", "disney.txt", "14:30:00", "21:00:00"});
+		Main.main(new String[]{"production", "disney.txt", "email_config.yml", "14:30:00", "21:00:00"});
 
 		try {
 			FileHandler.deleteFile("disney.txt");

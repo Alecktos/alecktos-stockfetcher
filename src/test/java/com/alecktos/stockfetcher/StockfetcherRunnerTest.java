@@ -1,7 +1,7 @@
 package com.alecktos.stockfetcher;
 
-import com.alecktos.FileHandler;
-import com.alecktos.logger.Logger;
+import com.alecktos.misc.FileHandler;
+import com.alecktos.misc.logger.Logger;
 import com.alecktos.marketopen.DateTime;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
