@@ -10,7 +10,7 @@ import com.google.inject.Module;
 public class Main {
 
 	public static void main(String[] args) {
-		String mode = args.length > 0 ? args[0] : "emulation";
+		String mode = args[0];
 		String stockFilePath = args[1];
 		String emailConfigPath = args[2];
 		String openingTime = args[3];
