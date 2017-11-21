@@ -1,20 +1,20 @@
 package com.alecktos.stockfetcher;
 
-import com.alecktos.misc.LineFileReader;
-import com.alecktos.StockFileLineExtractor;
-import com.alecktos.misc.logger.Logger;
 import com.alecktos.misc.DateTime;
+import com.alecktos.misc.LineFileReader;
+import com.alecktos.misc.logger.Logger;
 import com.google.inject.Inject;
-
-import java.util.List;
 
 class LastLineFileRepairer {
 
 	private Logger logger;
 
+	private LineFileReader lineFileReader;
+
 	@Inject
-	public LastLineFileRepairer(Logger logger) {
+	public LastLineFileRepairer(Logger logger, LineFileReader lineFileReader) {
 		this.logger = logger;
+		this.lineFileReader = lineFileReader;
 	}
 
 	/**
@@ -31,11 +31,9 @@ class LastLineFileRepairer {
 	void repairLastLine(String filePath, DateTime dateTimeToSave, DateTime now) {
 		//String filePath = config.getArchivePath();
 
-		LineFileReader lineFileReader = new LineFileReader();
-		final List<String> linesFromFile = lineFileReader.getLinesFromFile(filePath, -1);
+		String lastLine = lineFileReader.getLastLine(filePath);
 
-		int lastIndex = linesFromFile.size() - 1;
-		StockFileLineExtractor stockFileLineExtractor = new StockFileLineExtractor(linesFromFile.get(lastIndex));
+		StockFileLineExtractor stockFileLineExtractor = new StockFileLineExtractor(lastLine);
 		DateTime lastInsertedPriceDateTime = DateTime.createFromDateTimeString(stockFileLineExtractor.getDateTimeStringFromRow());
 
 		if(lastLineWasJustAdded(lastInsertedPriceDateTime, now)) {
@@ -45,7 +43,7 @@ class LastLineFileRepairer {
 
 		//repair line
 		PriceFileSaver priceSaver = new PriceFileSaver();
-		double lastPrice = new StockFileLineExtractor(linesFromFile.get(lastIndex)).getPriceFromRow();
+		double lastPrice = new StockFileLineExtractor(lastLine).getPriceFromRow();
 
 		priceSaver.savePrice(filePath, lastPrice, dateTimeToSave);
 		logger.logAndAlert("Saved price for repaired last line", getClass());

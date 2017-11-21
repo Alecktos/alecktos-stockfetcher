@@ -1,4 +1,4 @@
-package com.alecktos;
+package com.alecktos.stockfetcher;
 
 import com.alecktos.misc.DateTime;
 

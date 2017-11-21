@@ -1,9 +1,9 @@
 package com.alecktos.stockfetcher;
 
+import com.alecktos.misc.DateTime;
 import com.alecktos.misc.FileHandler;
 import com.alecktos.misc.LineFileReader;
 import com.alecktos.misc.logger.Logger;
-import com.alecktos.misc.DateTime;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -117,7 +117,7 @@ public class LastLineFileRepairerTest {
 	@Test
 	public void testThatLastLineIsNotRepairedIfAlreadyInsertedCorrect() {
 		Logger logger = mock(Logger.class);
-		LastLineFileRepairer lastLineFileRepairer = new LastLineFileRepairer(logger);
+		LastLineFileRepairer lastLineFileRepairer = new LastLineFileRepairer(logger, new LineFileReader());
 
 		DateTime dateTimeToSave = DateTime.createFromDateTimeString("09/15/2016 20:56:01");
 		DateTime fakeNow = DateTime.createFromDateTimeString("09/15/2016 20:59:02"); //less then five minutes after last line. This mean that the las line was inserted correct.

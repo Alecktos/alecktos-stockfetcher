@@ -1,4 +1,4 @@
-package com.alecktos.candles;
+package com.alecktos.stockfetcher.candles;
 
 
 public class CandleStick {

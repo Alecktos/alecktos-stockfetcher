@@ -1,8 +1,9 @@
 package com.alecktos.stockfetcher;
 
 import com.alecktos.misc.FileHandler;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import com.testutils.EmailTestConfig;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -10,28 +11,14 @@ import java.io.PrintWriter;
 
 public class MainTest {
 
-	@BeforeClass
-	public static void beforeClass() {
-		try(PrintWriter printWriter = FileHandler.getFileWriter("email_config.yml")) {
-			printWriter.println("email:");
-			printWriter.println("  authentication:");
-			printWriter.println("    username: stuff.ae@yahoo.com");
-			printWriter.println("    password: fhdjsk12!");
-			printWriter.println("  hostname: smtp.mail.gmail.com");
-			printWriter.println("  fromaddress: a.dse@yahoo.com");
-			printWriter.println("  receiveraddress: fhdsjk@gmail.com");
-		}catch (IOException e) {
-			throw new RuntimeException("Failed saving file: " + e.getMessage() + e.getStackTrace().toString());
-		}
+	@Before
+	public void before() {
+		EmailTestConfig.create();
 	}
 
-	@AfterClass
-	public static void afterClass() {
-		try {
-			FileHandler.deleteFile("email_config.yml");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	@After
+	public void after() {
+		EmailTestConfig.destroy();
 	}
 
 	@Test

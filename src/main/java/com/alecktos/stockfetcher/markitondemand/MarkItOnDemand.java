@@ -1,6 +1,6 @@
 package com.alecktos.stockfetcher.markitondemand;
 
-import com.alecktos.candles.CandleStick;
+import com.alecktos.stockfetcher.candles.CandleStick;
 
 /**
  * http://dev.markitondemand.com/MODApis/#stockquote

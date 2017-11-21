@@ -1,8 +1,8 @@
 package com.alecktos.stockfetcher.markitondemand;
 
 import com.alecktos.misc.Stream;
-import com.alecktos.candles.CandleStick;
 import com.alecktos.misc.logger.Logger;
+import com.alecktos.stockfetcher.candles.CandleStick;
 import org.json.JSONObject;
 
 import javax.inject.Inject;
@@ -47,7 +47,7 @@ class MarkItOnDemandJSON {
 	 * @throws UnsupportedEncodingException
 	 */
 	private String getHistoricDataUrl(String startDate, String endDate) throws UnsupportedEncodingException {
-		//har testat utförligt och inga intra dagsrequest fungerar
+		//No intra dayrequest seems to work
 
 		final String paramsObject = "{" +
 				"\"Normalized\":false," + //show percent if true. In price if false

@@ -1,10 +1,9 @@
 package com.alecktos.stockfetcher;
 
 
-import com.alecktos.misc.logger.Logger;
-import com.alecktos.misc.DateTime;
 import com.alecktos.marketopen.OpenStockHandler;
-import com.alecktos.stockfetcher.markitondemand.MarkItOnDemand;
+import com.alecktos.misc.DateTime;
+import com.alecktos.misc.logger.Logger;
 import com.google.inject.Inject;
 
 class StockfetcherRunner {
@@ -17,6 +16,12 @@ class StockfetcherRunner {
 
 	@Inject
 	private OpenStockHandler openStockHandler;
+
+	@Inject
+	private PriceFetcher priceFetcher;
+
+	@Inject
+	private PriceFileSaver priceFileSaver;
 
 	void run(DateTime dateTime, String openingTime, String closingTime, String filePath) {
 		try {
@@ -36,9 +41,7 @@ class StockfetcherRunner {
 			return;
 		}
 
-		MarkItOnDemand markItOnDemand = new MarkItOnDemand();
-		double price = markItOnDemand.getCurrentStockPrice();
-		PriceFileSaver priceFileSaver = new PriceFileSaver();
+		double price = priceFetcher.fetch(filePath);
 		priceFileSaver.savePrice(filePath, price, dateTime);
 	}
 

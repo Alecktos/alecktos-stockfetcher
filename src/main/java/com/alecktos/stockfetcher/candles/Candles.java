@@ -1,8 +1,8 @@
-package com.alecktos.candles;
+package com.alecktos.stockfetcher.candles;
 
-import com.alecktos.StockFileLineExtractor;
-import com.alecktos.misc.logger.Logger;
 import com.alecktos.misc.DateTime;
+import com.alecktos.misc.logger.Logger;
+import com.alecktos.stockfetcher.StockFileLineExtractor;
 
 import java.util.ArrayList;
 import java.util.Iterator;

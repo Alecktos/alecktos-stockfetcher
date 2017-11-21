@@ -1,43 +1,32 @@
 package com.alecktos.stockfetcher;
 
-import com.alecktos.misc.FileHandler;
 import com.alecktos.misc.DateTime;
+import com.alecktos.misc.FileHandler;
 import com.alecktos.stockfetcher.markitondemand.MarkItOnDemand;
+import com.testutils.TestStockFile;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
 
 public class PriceFileSaverTest {
 
-	private static String disneyStockTestPath = "src/test/disneyStockTest.txt";
-
-	private static void removeTestFile() {
-		try {
-			FileHandler.deleteFile(disneyStockTestPath);
-		} catch (IOException e) {
-			e.printStackTrace();
-			fail();
-		}
-	}
-
 	@Before
 	public void cleanUp() {
-		removeTestFile();
+		TestStockFile.removeFile();
 	}
 
 	@Test
 	public void testFilePriceSaverShouldSave() {
 		PriceFileSaver filePriceSaver = new PriceFileSaver();
 		DateTime dateTime = DateTime.createFromDateTimeString("10/11/2016 16:10:51");
-		filePriceSaver.savePrice(disneyStockTestPath, 12, dateTime);
+		filePriceSaver.savePrice(TestStockFile.getFilePath(), 12, dateTime);
 
 		try {
-			final BufferedReader fileReader = FileHandler.getFileReader(disneyStockTestPath);
+			final BufferedReader fileReader = FileHandler.getFileReader(TestStockFile.getFilePath());
 			fileReader.readLine();
 			String secondLine = fileReader.readLine(); //12.0:1476014811000 # 10/09/2016 12:06:51
 			final String[] splits = secondLine.split(":");
@@ -50,20 +39,15 @@ public class PriceFileSaverTest {
 
 	@Test
 	public void testSavingCurrentPriceToFile() {
-		assertFalse(disneyStockFileExist());
+		assertFalse(TestStockFile.fileExist());
 		MarkItOnDemand markItOnDemand = new MarkItOnDemand();
 		Double currentStockPrice = markItOnDemand.getCurrentStockPrice();
 
 		DateTime dateTime = DateTime.createFromDateTimeString("16/11/2016 14:44:00");
 
 		PriceFileSaver priceFileSaver = new PriceFileSaver();
-		priceFileSaver.savePrice(disneyStockTestPath, currentStockPrice, dateTime);
+		priceFileSaver.savePrice(TestStockFile.getFilePath(), currentStockPrice, dateTime);
 
-		assertTrue(disneyStockFileExist());
-	}
-
-	private boolean disneyStockFileExist() {
-		File f = new File(disneyStockTestPath);
-		return f.exists() && !f.isDirectory();
+		assertTrue(TestStockFile.fileExist());
 	}
 }
