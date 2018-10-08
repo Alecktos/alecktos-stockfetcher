@@ -17,6 +17,9 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'com.github.Alecktos:alecktos-marketopen:v2'
     compile 'com.github.Alecktos:alecktos-misc:v9'
+    
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
+
     testCompile 'org.mockito:mockito-core:2.+'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
