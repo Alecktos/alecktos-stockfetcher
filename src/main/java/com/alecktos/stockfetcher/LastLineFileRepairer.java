@@ -1,7 +1,9 @@
 package com.alecktos.stockfetcher;
 
 import com.alecktos.misc.DateTime;
+import com.alecktos.misc.InfluxdbDAO;
 import com.alecktos.misc.LineFileReader;
+import com.alecktos.misc.logger.AlertNotifierInterface;
 import com.alecktos.misc.logger.Logger;
 import com.google.inject.Inject;
 
@@ -41,8 +43,8 @@ class LastLineFileRepairer {
 			return;
 		}
 
-		//repair line
-		PriceFileSaver priceSaver = new PriceFileSaver();
+		Logger logger = new Logger((message, subject) -> {});
+		PriceFileSaver priceSaver = new PriceFileSaver(logger, new InfluxdbDAO(), "stocks_test");
 		double lastPrice = new StockFileLineExtractor(lastLine).getPriceFromRow();
 
 		priceSaver.savePrice(filePath, lastPrice, dateTimeToSave);

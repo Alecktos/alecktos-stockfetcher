@@ -1,20 +1,31 @@
 package com.alecktos.stockfetcher;
 
 import com.alecktos.misc.FileHandler;
+import com.alecktos.misc.InfluxdbDAO;
 import com.alecktos.misc.logger.Logger;
 import com.alecktos.misc.DateTime;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 class PriceFileSaver {
 
-	@Inject
 	private Logger logger;
+	private InfluxdbDAO influxdbDAO;
+	private String influxDbName;
+
+	@Inject
+		public PriceFileSaver(Logger logger, InfluxdbDAO influxdbDAO, @Named("influxDbName") final String influxDbName) {
+		this.logger = logger;
+		this.influxdbDAO= influxdbDAO;
+		this.influxDbName = influxDbName;
+	}
 
 	void savePrice(String filePath, double price, DateTime dateTime) {
 		saveToFile(filePath, price, dateTime);
+		influxdbDAO.writeInflux(price, dateTime, influxDbName);
 	}
 
 	private void saveToFile(String filePath, double price, DateTime dateTime) {

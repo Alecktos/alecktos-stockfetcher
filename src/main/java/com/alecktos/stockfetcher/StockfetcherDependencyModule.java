@@ -32,6 +32,7 @@ abstract public class StockfetcherDependencyModule extends AbstractModule {
 	protected void configure() {
 		bind(Logger.class).toProvider(getLoggerProvider());
 		bindConstant().annotatedWith(Names.named("emailConfigPath")).to(emailConfigPath);
+		bindConstant().annotatedWith(Names.named("influxDbName")).to("stocks");
 	}
 
 }

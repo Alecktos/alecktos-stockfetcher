@@ -1,10 +1,12 @@
 package com.alecktos.stockfetcher;
 
 import com.alecktos.misc.DateTime;
+import com.alecktos.misc.InfluxdbDAO;
 import com.alecktos.misc.LineFileReader;
 import com.alecktos.misc.logger.Logger;
 import com.alecktos.stockfetcher.markitondemand.MarkItOnDemand;
 import com.google.inject.*;
+import com.google.inject.name.Names;
 import com.testutils.FileExist;
 import com.testutils.TestStockFile;
 import org.junit.AfterClass;
@@ -33,6 +35,7 @@ public class StockfetcherRunnerTest {
 			@Override
 			protected void configure() {
 				bind(Logger.class).toInstance(logger);
+				bindConstant().annotatedWith(Names.named("influxDbName")).to("db_test");
 			}
 		};
 		Injector injector = Guice.createInjector(module);
@@ -42,6 +45,7 @@ public class StockfetcherRunnerTest {
 	@Before
 	public void before() {
 		TestStockFile.removeFile();
+		InfluxdbDAO.deleteDb("db_test");
 	}
 
 	@AfterClass
