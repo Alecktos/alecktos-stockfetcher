@@ -70,9 +70,9 @@
 	</dependency>
 
 	<dependency>
-		<groupId>com.alecktos.misc</groupId>
+		<groupId>com.github.Alecktos</groupId>
 		<artifactId>alecktos-misc</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>v12</version>
 	  <scope>compile</scope>
 	</dependency>
 
